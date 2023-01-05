@@ -8,14 +8,33 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+
   title: 'Seeed Studio Wiki',
-  tagline: 'The IoT Hardware Development Documentation',
+  tagline: 'The open documentation platform for Seeed Studio.',
   
   url: 'https://c1ev0ps.github.io',
   baseUrl: '/docusaurus_wiki/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  
+  scripts: [
+    {
+      src: 'https://viewer.altium.com/client/static/js/embed.js',
+      async: true,
+    },
+  ],
+
+  scripts: [
+    // String format.
+    // 'https://viewer.altium.com/client/static/js/embed.js',
+    
+    // Object format.
+    {
+      src: 'https://viewer.altium.com/client/static/js/embed.js',
+      async: true,
+    },
+  ],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -27,7 +46,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en',  'fa'],
+    locales: ['en',  'zh-CN'],
     path: 'i18n',
     localeConfigs: {
       en: {
@@ -36,13 +55,6 @@ const config = {
         htmlLang: 'en-US',
         calendar: 'gregory',
         path: 'en',
-      },
-      fa: {
-        label: 'فارسی',
-        direction: 'rtl',
-        htmlLang: 'fa-IR',
-        calendar: 'persian',
-        path: 'fa',
       },
     },
   },
@@ -131,7 +143,7 @@ const config = {
         ],
       },
     ],
-    
+    'docusaurus-plugin-image-zoom',
   ],
   
   themeConfig:
@@ -139,6 +151,18 @@ const config = {
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 
     ({
+
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(50, 50, 50)'
+        },
+        // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+        // https://github.com/gabrielcsapo/docusaurus-plugin-image-zoom
+        config: {}
+      },
+
       giscus: {
         repo: 'c1ev0ps/docusaurus_wiki',
         repoId: 'R_kgDOIabZbQ',
@@ -162,20 +186,88 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'About',
+            docId: 'weekly_wiki',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Product',
           },
-          {to: 'https://www.seeedstudio.com/', label: 'Bazaar', position: 'left'},
-          {to: 'https://www.seeedstudio.com/fusion.html', label: 'Fusion', position: 'left'},
-          {to: 'https://www.seeedstudio.com/odm', label: 'Services', position: 'left'},
-          {to: 'https://forum.seeedstudio.com/', label: 'Forum', position: 'left'},
-          {to: 'https://solution.seeedstudio.com/', label: 'Solution', position: 'left'},
+          {
+            type: 'doc',
+            docId: 'SenseCAP/SenseCAP_Introdution',
+            position: 'left',
+            label: 'SenseCAP',
+          },
+          {
+            type: 'doc',
+            docId: 'Maker/Maker_Introduction',
+            position: 'left',
+            label: 'Maker',
+          },
+
+          {
+          type: 'dropdown',
+          label: 'SEEED',
+          position: 'left',
+          items: [
+            {
+              label: 'Bazaar',
+              to: 'https://www.seeedstudio.com/',
+            },
+            {
+              label: 'Fusion',
+              to: 'https://www.seeedstudio.com/fusion.html',
+            },
+            {
+              label: 'Service',
+              to: 'https://www.seeedstudio.com/odm',
+            },
+            {
+              label: 'Forum',
+              to: 'https://forum.seeedstudio.com/',
+            },
+            {
+              label: 'Solution',
+              to: 'https://solution.seeedstudio.com/',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Ecosystem',
+          position: 'left',
+          items: [
+            {
+              label: 'Discord',
+              to: 'https://discord.com/invite/QqMgVwHT3X',
+            },
+            {
+              label: 'Twitter',
+              to: 'https://twitter.com/seeedstudio',
+            },
+            {
+              label: 'Hackster',
+              to: 'https://www.hackster.io/seeed',
+            },
+            {
+              label: 'Youtube',
+              to: 'http://www.youtube.com/c/SeeedStudioSZ',
+            },
+            {
+              label: 'LinkedIn',
+              to: 'https://www.linkedin.com/company/seeedstudio',
+            },
+          ],
+        },
+
           {
             href: 'https://github.com/c1ev0ps/docusaurus_wiki',
             label: 'GitHub',
             position: 'right',
           },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+          
         ],
       },
       
@@ -260,7 +352,7 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-          'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+          'We are looking forward to your contribution! Welcome come to our <a target="_blank" rel="https://github.com/orgs/c1ev0ps/projects/3/views/1" href="#">Task Project</a>',
         backgroundColor: '#fafbfc',
         textColor: '#091E42',
         isCloseable: false,
